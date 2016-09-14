@@ -13,13 +13,13 @@
  * Set up the WordPress core custom header arguments and settings.
  *
  * @uses add_theme_support() to register support for 3.4 and up.
- * @uses semi-toko-online_header_style() to style front end.
- * @uses semi-toko-online_admin_header_style() to style wp-admin form.
- * @uses semi-toko-online_admin_header_image() to add custom markup to wp-admin form.
+ * @uses stOnline_header_style() to style front end.
+ * @uses stOnline_admin_header_style() to style wp-admin form.
+ * @uses stOnline_admin_header_image() to add custom markup to wp-admin form.
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_custom_header_setup() {
+function stOnline_custom_header_setup() {
 	$args = array(
 		// Text color and image (empty to use none).
 		'default-text-color'     => '515151',
@@ -38,26 +38,26 @@ function semi-toko-online_custom_header_setup() {
 		'random-default'         => false,
 
 		// Callbacks for styling the header and the admin preview.
-		'wp-head-callback'       => 'semi-toko-online_header_style',
-		'admin-head-callback'    => 'semi-toko-online_admin_header_style',
-		'admin-preview-callback' => 'semi-toko-online_admin_header_image',
+		'wp-head-callback'       => 'stOnline_header_style',
+		'admin-head-callback'    => 'stOnline_admin_header_style',
+		'admin-preview-callback' => 'stOnline_admin_header_image',
 	);
 
 	add_theme_support( 'custom-header', $args );
 }
-add_action( 'after_setup_theme', 'semi-toko-online_custom_header_setup' );
+add_action( 'after_setup_theme', 'stOnline_custom_header_setup' );
 
 /**
  * Load our special font CSS file.
  *
  * @since Twenty Twelve 1.2
  */
-function semi-toko-online_custom_header_fonts() {
-	$font_url = semi-toko-online_get_font_url();
+function stOnline_custom_header_fonts() {
+	$font_url = stOnline_get_font_url();
 	if ( ! empty( $font_url ) )
 		wp_enqueue_style( 'semi-toko-online-fonts', esc_url_raw( $font_url ), array(), null );
 }
-add_action( 'admin_print_styles-appearance_page_custom-header', 'semi-toko-online_custom_header_fonts' );
+add_action( 'admin_print_styles-appearance_page_custom-header', 'stOnline_custom_header_fonts' );
 
 /**
  * Style the header text displayed on the blog.
@@ -66,7 +66,7 @@ add_action( 'admin_print_styles-appearance_page_custom-header', 'semi-toko-onlin
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_header_style() {
+function stOnline_header_style() {
 	$text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
@@ -104,7 +104,7 @@ function semi-toko-online_header_style() {
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_admin_header_style() {
+function stOnline_admin_header_style() {
 ?>
 	<style type="text/css" id="semi-toko-online-admin-header-css">
 	.appearance_page_custom-header #headimg {
@@ -146,7 +146,7 @@ function semi-toko-online_admin_header_style() {
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_admin_header_image() {
+function stOnline_admin_header_image() {
 	$style = 'color: #' . get_header_textcolor() . ';';
 	if ( ! display_header_text() ) {
 		$style = 'display: none;';

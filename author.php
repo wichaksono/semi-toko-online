@@ -40,7 +40,7 @@ get_header(); ?>
 				rewind_posts();
 			?>
 
-			<?php semi-toko-online_content_nav( 'nav-above' ); ?>
+			<?php stOnline_content_nav( 'nav-above' ); ?>
 
 			<?php
 			// If a user has filled out their description, show a bio on their entries.
@@ -55,7 +55,7 @@ get_header(); ?>
 					 *
 					 * @param int $size The height and width of the avatar in pixels.
 					 */
-					$author_bio_avatar_size = apply_filters( 'semi-toko-online_author_bio_avatar_size', 68 );
+					$author_bio_avatar_size = apply_filters( 'stOnline_author_bio_avatar_size', 68 );
 					echo get_avatar( get_the_author_meta( 'user_email' ), $author_bio_avatar_size );
 					?>
 				</div><!-- .author-avatar -->
@@ -71,7 +71,7 @@ get_header(); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
 			<?php endwhile; ?>
 
-			<?php semi-toko-online_content_nav( 'nav-below' ); ?>
+			<?php stOnline_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>

@@ -18,14 +18,14 @@ get_header(); ?>
 				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'semi-toko-online' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header>
 
-			<?php semi-toko-online_content_nav( 'nav-above' ); ?>
+			<?php stOnline_content_nav( 'nav-above' ); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
 			<?php endwhile; ?>
 
-			<?php semi-toko-online_content_nav( 'nav-below' ); ?>
+			<?php stOnline_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 

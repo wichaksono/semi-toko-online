@@ -84,7 +84,7 @@ endif;
 								 *     @type int The attachment width in pixels.
 								 * }
 								 */
-								$attachment_size = apply_filters( 'semi-toko-online_attachment_size', array( 960, 960 ) );
+								$attachment_size = apply_filters( 'stOnline_attachment_size', array( 960, 960 ) );
 								echo wp_get_attachment_image( $post->ID, $attachment_size );
 								?></a>
 

@@ -12,7 +12,7 @@
 	</div><!-- #main .wrapper -->
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info">
-			<?php do_action( 'semi-toko-online_credits' ); ?>
+			<?php do_action( 'stOnline_credits' ); ?>
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'semi-toko-online' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'semi-toko-online' ); ?>"><?php printf( __( 'Proudly powered by %s', 'semi-toko-online' ), 'WordPress' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

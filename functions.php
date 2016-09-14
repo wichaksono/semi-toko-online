@@ -41,7 +41,7 @@ if ( ! isset( $content_width ) )
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_setup() {
+function stOnline_setup() {
 	/*
 	 * Makes Twenty Twelve available for translation.
 	 *
@@ -78,7 +78,7 @@ function semi-toko-online_setup() {
 	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 }
-add_action( 'after_setup_theme', 'semi-toko-online_setup' );
+add_action( 'after_setup_theme', 'stOnline_setup' );
 
 /**
  * Add support for a custom header image.
@@ -95,7 +95,7 @@ require( get_template_directory() . '/inc/custom-header.php' );
  *
  * @return string Font stylesheet or empty string if disabled.
  */
-function semi-toko-online_get_font_url() {
+function stOnline_get_font_url() {
 	$font_url = '';
 
 	/* translators: If there are characters in your language that are not supported
@@ -131,7 +131,7 @@ function semi-toko-online_get_font_url() {
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_scripts_styles() {
+function stOnline_scripts_styles() {
 	global $wp_styles;
 
 	/*
@@ -144,7 +144,7 @@ function semi-toko-online_scripts_styles() {
 	// Adds JavaScript for handling the navigation menu hide-and-show behavior.
 	wp_enqueue_script( 'semi-toko-online-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20140711', true );
 
-	$font_url = semi-toko-online_get_font_url();
+	$font_url = stOnline_get_font_url();
 	if ( ! empty( $font_url ) )
 		wp_enqueue_style( 'semi-toko-online-fonts', esc_url_raw( $font_url ), array(), null );
 
@@ -155,22 +155,22 @@ function semi-toko-online_scripts_styles() {
 	wp_enqueue_style( 'semi-toko-online-ie', get_template_directory_uri() . '/css/ie.css', array( 'semi-toko-online-style' ), '20121010' );
 	$wp_styles->add_data( 'semi-toko-online-ie', 'conditional', 'lt IE 9' );
 }
-add_action( 'wp_enqueue_scripts', 'semi-toko-online_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'stOnline_scripts_styles' );
 
 /**
  * Filter TinyMCE CSS path to include Google Fonts.
  *
  * Adds additional stylesheets to the TinyMCE editor if needed.
  *
- * @uses semi-toko-online_get_font_url() To get the Google Font stylesheet URL.
+ * @uses stOnline_get_font_url() To get the Google Font stylesheet URL.
  *
  * @since Twenty Twelve 1.2
  *
  * @param string $mce_css CSS path to load in TinyMCE.
  * @return string Filtered CSS path.
  */
-function semi-toko-online_mce_css( $mce_css ) {
-	$font_url = semi-toko-online_get_font_url();
+function stOnline_mce_css( $mce_css ) {
+	$font_url = stOnline_get_font_url();
 
 	if ( empty( $font_url ) )
 		return $mce_css;
@@ -182,7 +182,7 @@ function semi-toko-online_mce_css( $mce_css ) {
 
 	return $mce_css;
 }
-add_filter( 'mce_css', 'semi-toko-online_mce_css' );
+add_filter( 'mce_css', 'stOnline_mce_css' );
 
 /**
  * Filter the page title.
@@ -196,7 +196,7 @@ add_filter( 'mce_css', 'semi-toko-online_mce_css' );
  * @param string $sep Optional separator.
  * @return string Filtered title.
  */
-function semi-toko-online_wp_title( $title, $sep ) {
+function stOnline_wp_title( $title, $sep ) {
 	global $paged, $page;
 
 	if ( is_feed() )
@@ -216,7 +216,7 @@ function semi-toko-online_wp_title( $title, $sep ) {
 
 	return $title;
 }
-add_filter( 'wp_title', 'semi-toko-online_wp_title', 10, 2 );
+add_filter( 'wp_title', 'stOnline_wp_title', 10, 2 );
 
 /**
  * Filter the page menu arguments.
@@ -225,12 +225,12 @@ add_filter( 'wp_title', 'semi-toko-online_wp_title', 10, 2 );
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_page_menu_args( $args ) {
+function stOnline_page_menu_args( $args ) {
 	if ( ! isset( $args['show_home'] ) )
 		$args['show_home'] = true;
 	return $args;
 }
-add_filter( 'wp_page_menu_args', 'semi-toko-online_page_menu_args' );
+add_filter( 'wp_page_menu_args', 'stOnline_page_menu_args' );
 
 /**
  * Register sidebars.
@@ -239,7 +239,7 @@ add_filter( 'wp_page_menu_args', 'semi-toko-online_page_menu_args' );
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_widgets_init() {
+function stOnline_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Main Sidebar', 'semi-toko-online' ),
 		'id' => 'sidebar-1',
@@ -270,15 +270,15 @@ function semi-toko-online_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'semi-toko-online_widgets_init' );
+add_action( 'widgets_init', 'stOnline_widgets_init' );
 
-if ( ! function_exists( 'semi-toko-online_content_nav' ) ) :
+if ( ! function_exists( 'stOnline_content_nav' ) ) :
 /**
  * Displays navigation to next/previous pages when applicable.
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_content_nav( $html_id ) {
+function stOnline_content_nav( $html_id ) {
 	global $wp_query;
 
 	if ( $wp_query->max_num_pages > 1 ) : ?>
@@ -291,18 +291,18 @@ function semi-toko-online_content_nav( $html_id ) {
 }
 endif;
 
-if ( ! function_exists( 'semi-toko-online_comment' ) ) :
+if ( ! function_exists( 'stOnline_comment' ) ) :
 /**
  * Template for comments and pingbacks.
  *
  * To override this walker in a child theme without modifying the comments template
- * simply create your own semi-toko-online_comment(), and that function will be used instead.
+ * simply create your own stOnline_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_comment( $comment, $args, $depth ) {
+function stOnline_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
 		case 'pingback' :
@@ -355,17 +355,17 @@ function semi-toko-online_comment( $comment, $args, $depth ) {
 }
 endif;
 
-if ( ! function_exists( 'semi-toko-online_entry_meta' ) ) :
+if ( ! function_exists( 'stOnline_entry_meta' ) ) :
 /**
  * Set up post entry meta.
  *
  * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
  *
- * Create your own semi-toko-online_entry_meta() to override in a child theme.
+ * Create your own stOnline_entry_meta() to override in a child theme.
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_entry_meta() {
+function stOnline_entry_meta() {
 	// Translators: used between list items, there is a space after the comma.
 	$categories_list = get_the_category_list( __( ', ', 'semi-toko-online' ) );
 
@@ -421,7 +421,7 @@ endif;
  * @param array $classes Existing class values.
  * @return array Filtered class values.
  */
-function semi-toko-online_body_class( $classes ) {
+function stOnline_body_class( $classes ) {
 	$background_color = get_background_color();
 	$background_image = get_background_image();
 
@@ -452,7 +452,7 @@ function semi-toko-online_body_class( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'semi-toko-online_body_class' );
+add_filter( 'body_class', 'stOnline_body_class' );
 
 /**
  * Adjust content width in certain contexts.
@@ -462,13 +462,13 @@ add_filter( 'body_class', 'semi-toko-online_body_class' );
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_content_width() {
+function stOnline_content_width() {
 	if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) ) {
 		global $content_width;
 		$content_width = 960;
 	}
 }
-add_action( 'template_redirect', 'semi-toko-online_content_width' );
+add_action( 'template_redirect', 'stOnline_content_width' );
 
 /**
  * Register postMessage support.
@@ -479,7 +479,7 @@ add_action( 'template_redirect', 'semi-toko-online_content_width' );
  *
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
-function semi-toko-online_customize_register( $wp_customize ) {
+function stOnline_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -488,26 +488,26 @@ function semi-toko-online_customize_register( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector' => '.site-title > a',
 			'container_inclusive' => false,
-			'render_callback' => 'semi-toko-online_customize_partial_blogname',
+			'render_callback' => 'stOnline_customize_partial_blogname',
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
 			'selector' => '.site-description',
 			'container_inclusive' => false,
-			'render_callback' => 'semi-toko-online_customize_partial_blogdescription',
+			'render_callback' => 'stOnline_customize_partial_blogdescription',
 		) );
 	}
 }
-add_action( 'customize_register', 'semi-toko-online_customize_register' );
+add_action( 'customize_register', 'stOnline_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @since Twenty Twelve 2.0
- * @see semi-toko-online_customize_register()
+ * @see stOnline_customize_register()
  *
  * @return void
  */
-function semi-toko-online_customize_partial_blogname() {
+function stOnline_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -515,11 +515,11 @@ function semi-toko-online_customize_partial_blogname() {
  * Render the site tagline for the selective refresh partial.
  *
  * @since Twenty Twelve 2.0
- * @see semi-toko-online_customize_register()
+ * @see stOnline_customize_register()
  *
  * @return void
  */
-function semi-toko-online_customize_partial_blogdescription() {
+function stOnline_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
@@ -530,7 +530,7 @@ function semi-toko-online_customize_partial_blogdescription() {
  *
  * @since Twenty Twelve 1.0
  */
-function semi-toko-online_customize_preview_js() {
+function stOnline_customize_preview_js() {
 	wp_enqueue_script( 'semi-toko-online-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20141120', true );
 }
-add_action( 'customize_preview_init', 'semi-toko-online_customize_preview_js' );
+add_action( 'customize_preview_init', 'stOnline_customize_preview_js' );

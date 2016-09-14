@@ -22,7 +22,7 @@
 			 *
 			 * @param int $size The height and width of the avatar in pixels.
 			 */
-			$status_avatar = apply_filters( 'semi-toko-online_status_avatar', 48 );
+			$status_avatar = apply_filters( 'stOnline_status_avatar', 48 );
 			echo get_avatar( get_the_author_meta( 'ID' ), $status_avatar );
 			?>
 		</div><!-- .entry-header -->
