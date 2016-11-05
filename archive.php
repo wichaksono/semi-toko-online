@@ -49,7 +49,7 @@ get_header(); ?>
 
 			endwhile;
 
-			semi-toko-online_content_nav( 'nav-below' );
+			stOnline_content_nav( 'nav-below' );
 			?>
 
 		<?php else : ?>
